@@ -1,6 +1,7 @@
 package app.com.youtubeapiv3.fragments;
 
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -24,8 +26,10 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import app.com.youtubeapiv3.DetailsActivity;
 import app.com.youtubeapiv3.R;
 import app.com.youtubeapiv3.adapters.VideoPostAdapter;
+import app.com.youtubeapiv3.interfaces.OnItemClickListener;
 import app.com.youtubeapiv3.models.YoutubeDataModel;
 
 /**
@@ -59,7 +63,15 @@ public class ChannelFragment extends Fragment {
 
     private void initList(ArrayList<YoutubeDataModel> mListData) {
         mList_videos.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new VideoPostAdapter(getActivity(), mListData);
+        adapter = new VideoPostAdapter(getActivity(), mListData, new OnItemClickListener() {
+            @Override
+            public void onItemClick(YoutubeDataModel item) {
+                YoutubeDataModel youtubeDataModel = item;
+                Intent intent = new Intent(getActivity(), DetailsActivity.class);
+                intent.putExtra(YoutubeDataModel.class.toString(), youtubeDataModel);
+                startActivity(intent);
+            }
+        });
         mList_videos.setAdapter(adapter);
 
     }
@@ -106,30 +118,35 @@ public class ChannelFragment extends Fragment {
         }
     }
 
-    private ArrayList<YoutubeDataModel> parseVideoListFromResponse(JSONObject jsonObject) {
+    public ArrayList<YoutubeDataModel> parseVideoListFromResponse(JSONObject jsonObject) {
         ArrayList<YoutubeDataModel> mList = new ArrayList<>();
+
         if (jsonObject.has("items")) {
             try {
                 JSONArray jsonArray = jsonObject.getJSONArray("items");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject json = jsonArray.getJSONObject(i);
-                    if(json.has("id")){
+                    if (json.has("id")) {
                         JSONObject jsonID = json.getJSONObject("id");
-                        if(jsonID.has("kind")){
-                            if(jsonID.getString("kind").equals("youtube#video")){
-                                //get the data from snippet
+                        String video_id = "";
+                        if (jsonID.has("videoId")) {
+                            video_id = jsonID.getString("videoId");
+                        }
+                        if (jsonID.has("kind")) {
+                            if (jsonID.getString("kind").equals("youtube#video")) {
+                                YoutubeDataModel youtubeObject = new YoutubeDataModel();
                                 JSONObject jsonSnippet = json.getJSONObject("snippet");
                                 String title = jsonSnippet.getString("title");
                                 String description = jsonSnippet.getString("description");
                                 String publishedAt = jsonSnippet.getString("publishedAt");
                                 String thumbnail = jsonSnippet.getJSONObject("thumbnails").getJSONObject("high").getString("url");
 
-                                YoutubeDataModel youtube = new YoutubeDataModel();
-                                youtube.setTitle(title);
-                                youtube.setDescription(description);
-                                youtube.setPublishedAt(publishedAt);
-                                youtube.setThumbnail(thumbnail);
-                                mList.add(youtube);
+                                youtubeObject.setTitle(title);
+                                youtubeObject.setDescription(description);
+                                youtubeObject.setPublishedAt(publishedAt);
+                                youtubeObject.setThumbnail(thumbnail);
+                                youtubeObject.setVideo_id(video_id);
+                                mList.add(youtubeObject);
 
                             }
                         }
@@ -142,6 +159,7 @@ public class ChannelFragment extends Fragment {
         }
 
         return mList;
+
     }
 
 }

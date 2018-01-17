@@ -4,15 +4,23 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * Created by mdmunirhossain on 12/18/17.
+ * Created by mdmunirhossain on 1/4/18.
  */
 
-public class YoutubeDataModel implements Parcelable {
+public class YoutubeCommentModel implements Parcelable {
     private String title = "";
-    private String description = "";
+    private String comment = "";
     private String publishedAt = "";
     private String thumbnail = "";
     private String video_id = "";
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
     public String getVideo_id() {
         return video_id;
@@ -30,13 +38,6 @@ public class YoutubeDataModel implements Parcelable {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public String getPublishedAt() {
         return publishedAt;
@@ -62,40 +63,40 @@ public class YoutubeDataModel implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(title);
-        dest.writeString(description);
+        dest.writeString(comment);
         dest.writeString(publishedAt);
         dest.writeString(thumbnail);
         dest.writeString(video_id);
     }
 
-    public YoutubeDataModel() {
+    public YoutubeCommentModel() {
         super();
     }
 
 
-    protected YoutubeDataModel(Parcel in) {
+    protected YoutubeCommentModel(Parcel in) {
         this();
         readFromParcel(in);
     }
 
     public void readFromParcel(Parcel in) {
         this.title = in.readString();
-        this.description = in.readString();
+        this.comment = in.readString();
         this.publishedAt = in.readString();
         this.thumbnail = in.readString();
         this.video_id = in.readString();
 
     }
 
-    public static final Creator<YoutubeDataModel> CREATOR = new Creator<YoutubeDataModel>() {
+    public static final Creator<YoutubeCommentModel> CREATOR = new Creator<YoutubeCommentModel>() {
         @Override
-        public YoutubeDataModel createFromParcel(Parcel in) {
-            return new YoutubeDataModel(in);
+        public YoutubeCommentModel createFromParcel(Parcel in) {
+            return new YoutubeCommentModel(in);
         }
 
         @Override
-        public YoutubeDataModel[] newArray(int size) {
-            return new YoutubeDataModel[size];
+        public YoutubeCommentModel[] newArray(int size) {
+            return new YoutubeCommentModel[size];
         }
     };
 }

@@ -1,6 +1,7 @@
 package app.com.youtubeapiv3.fragments;
 
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -24,8 +26,10 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import app.com.youtubeapiv3.DetailsActivity;
 import app.com.youtubeapiv3.R;
 import app.com.youtubeapiv3.adapters.VideoPostAdapter;
+import app.com.youtubeapiv3.interfaces.OnItemClickListener;
 import app.com.youtubeapiv3.models.YoutubeDataModel;
 
 /**
@@ -35,7 +39,7 @@ public class PlayListFragment extends Fragment {
 
     private static String GOOGLE_YOUTUBE_API_KEY = "AIzaSyAdDix7i7a3an-gyXiquTV_14cIsr8-DZg";//here you should use your api key for testing purpose you can use this api also
     private static String PLAYLIST_ID = "UU7V6hW6xqPAiUfataAZZtWA";//here you should use your playlist id for testing purpose you can use this api also
-    private static String CHANNLE_GET_URL = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId="+PLAYLIST_ID+"&maxResults=20&key="+GOOGLE_YOUTUBE_API_KEY+"";
+    private static String CHANNLE_GET_URL = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=" + PLAYLIST_ID + "&maxResults=20&key=" + GOOGLE_YOUTUBE_API_KEY + "";
 
     private RecyclerView mList_videos = null;
     private VideoPostAdapter adapter = null;
@@ -60,7 +64,15 @@ public class PlayListFragment extends Fragment {
 
     private void initList(ArrayList<YoutubeDataModel> mListData) {
         mList_videos.setLayoutManager(new LinearLayoutManager(getActivity()));
-        adapter = new VideoPostAdapter(getActivity(), mListData);
+        adapter = new VideoPostAdapter(getActivity(), mListData, new OnItemClickListener() {
+            @Override
+            public void onItemClick(YoutubeDataModel item) {
+                YoutubeDataModel youtubeDataModel = item;
+                Intent intent = new Intent(getActivity(), DetailsActivity.class);
+                intent.putExtra(YoutubeDataModel.class.toString(), youtubeDataModel);
+                startActivity(intent);
+            }
+        });
         mList_videos.setAdapter(adapter);
 
     }
@@ -107,31 +119,39 @@ public class PlayListFragment extends Fragment {
         }
     }
 
-    private ArrayList<YoutubeDataModel> parseVideoListFromResponse(JSONObject jsonObject) {
+    public ArrayList<YoutubeDataModel> parseVideoListFromResponse(JSONObject jsonObject) {
         ArrayList<YoutubeDataModel> mList = new ArrayList<>();
+
         if (jsonObject.has("items")) {
             try {
                 JSONArray jsonArray = jsonObject.getJSONArray("items");
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject json = jsonArray.getJSONObject(i);
-                        if(json.has("kind")){
-                            if(json.getString("kind").equals("youtube#playlistItem")){
-                                //get the data from snippet
-                                JSONObject jsonSnippet = json.getJSONObject("snippet");
-                                String title = jsonSnippet.getString("title");
-                                String description = jsonSnippet.getString("description");
-                                String publishedAt = jsonSnippet.getString("publishedAt");
-                                String thumbnail = jsonSnippet.getJSONObject("thumbnails").getJSONObject("high").getString("url");
-
-                                YoutubeDataModel youtube = new YoutubeDataModel();
-                                youtube.setTitle(title);
-                                youtube.setDescription(description);
-                                youtube.setPublishedAt(publishedAt);
-                                youtube.setThumbnail(thumbnail);
-                                mList.add(youtube);
+                    if (json.has("kind")) {
+                        if (json.getString("kind").equals("youtube#playlistItem")) {
+                            YoutubeDataModel youtubeObject = new YoutubeDataModel();
+                            JSONObject jsonSnippet = json.getJSONObject("snippet");
+                            String vedio_id = "";
+                            if (jsonSnippet.has("resourceId")) {
+                                JSONObject jsonResource = jsonSnippet.getJSONObject("resourceId");
+                                vedio_id = jsonResource.getString("videoId");
 
                             }
+                            String title = jsonSnippet.getString("title");
+                            String description = jsonSnippet.getString("description");
+                            String publishedAt = jsonSnippet.getString("publishedAt");
+                            String thumbnail = jsonSnippet.getJSONObject("thumbnails").getJSONObject("high").getString("url");
+
+                            youtubeObject.setTitle(title);
+                            youtubeObject.setDescription(description);
+                            youtubeObject.setPublishedAt(publishedAt);
+                            youtubeObject.setThumbnail(thumbnail);
+                            youtubeObject.setVideo_id(vedio_id);
+                            mList.add(youtubeObject);
+
                         }
+                    }
+
 
                 }
             } catch (JSONException e) {
@@ -140,6 +160,8 @@ public class PlayListFragment extends Fragment {
         }
 
         return mList;
+
     }
+
 
 }

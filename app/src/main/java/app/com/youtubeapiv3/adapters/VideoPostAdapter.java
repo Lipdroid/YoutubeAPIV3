@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import app.com.youtubeapiv3.R;
+import app.com.youtubeapiv3.interfaces.OnItemClickListener;
 import app.com.youtubeapiv3.models.YoutubeDataModel;
 
 /**
@@ -24,10 +26,14 @@ public class VideoPostAdapter extends RecyclerView.Adapter<VideoPostAdapter.Yout
 
     private ArrayList<YoutubeDataModel> dataSet;
     private Context mContext = null;
+    private final OnItemClickListener listener;
 
-    public VideoPostAdapter(Context mContext, ArrayList<YoutubeDataModel> dataSet) {
+
+    public VideoPostAdapter(Context mContext, ArrayList<YoutubeDataModel> dataSet, OnItemClickListener listener) {
         this.dataSet = dataSet;
         this.mContext = mContext;
+        this.listener = listener;
+
     }
 
     @Override
@@ -51,6 +57,7 @@ public class VideoPostAdapter extends RecyclerView.Adapter<VideoPostAdapter.Yout
         textViewTitle.setText(object.getTitle());
         textViewDes.setText(object.getDescription());
         textViewDate.setText(object.getPublishedAt());
+        holder.bind(dataSet.get(position), listener);
 
         //TODO: image will be downloaded from url
         Picasso.with(mContext).load(object.getThumbnail()).into(ImageThumb);
@@ -77,6 +84,15 @@ public class VideoPostAdapter extends RecyclerView.Adapter<VideoPostAdapter.Yout
             this.textViewDate = (TextView) itemView.findViewById(R.id.textViewDate);
             this.ImageThumb = (ImageView) itemView.findViewById(R.id.ImageThumb);
 
+        }
+
+        public void bind(final YoutubeDataModel item, final OnItemClickListener listener) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    listener.onItemClick(item);
+                }
+            });
         }
     }
 }
