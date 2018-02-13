@@ -22,7 +22,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="130dp"
         android:id="@+id/title_layout"
         android:layout_below="@+id/youtube_player"
         android:background="#e4e4e4"
@@ -53,6 +53,16 @@
             android:text="Android Name sjdnjas ajskdjaksjdka kaskdjaksdj kjskdjaksj"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:text="Download This Video"
+            android:gravity="center"
+            android:onClick="downloadVideo"
+            android:textColor="@color/common_blue_bg"
+            android:layout_marginLeft="1dp"
+            android:layout_marginTop="5dp"/>
     </LinearLayout>
     <!--real image size is 40x50px-->
     <ImageView
