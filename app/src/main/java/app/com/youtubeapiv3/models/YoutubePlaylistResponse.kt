@@ -1,16 +1,13 @@
-/**
- * Created by mdmunirhossain on 1/4/18.
- */
-data class YoutubeDataModel(
+package app.com.youtubeapiv3.models
+
+class YoutubePlaylistResponse(
+    val items: List<YoutubePlayistModel>,
+)
+data class YoutubePlayistModel(
     val etag: String,
-    val id: Id,
+    val id: String,
     val kind: String,
     val snippet: Snippet
-)
-
-data class Id(
-    val kind: String,
-    val videoId: String
 )
 
 data class Snippet(

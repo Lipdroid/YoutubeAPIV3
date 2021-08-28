@@ -15,3 +15,4 @@ data class YoutubeCommentModel(
     var thumbnail: String? = "",
     var video_id: String? = ""
 ) : Parcelable
+

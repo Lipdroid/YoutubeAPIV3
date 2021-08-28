@@ -1,4 +1,4 @@
-package app.com.youtubeapiv3;
+package app.com.youtubeapiv3.ui.activities;
 
 import android.Manifest;
 import android.app.Activity;
@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -21,14 +20,13 @@ import com.google.android.youtube.player.YouTubePlayerView;
 
 import java.util.ArrayList;
 
-import app.com.youtubeapiv3.adapters.CommentAdapter;
+import app.com.youtubeapiv3.R;
 import app.com.youtubeapiv3.models.YoutubeCommentModel;
-import app.com.youtubeapiv3.models.YoutubeDataModel;
 
 public class DetailsActivity extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
     private static final int READ_STORAGE_PERMISSION_REQUEST_CODE = 1;
     private static String GOOGLE_YOUTUBE_API = "AIzaSyBH8szUCt1ctKQabVeQuvWgowaKxHVjn8E";
-    private YoutubeDataModel youtubeDataModel = null;
+    //private YoutubeDataModel youtubeDataModel = null;
     TextView textViewName;
     TextView textViewDes;
     TextView textViewDate;
@@ -37,7 +35,7 @@ public class DetailsActivity extends YouTubeBaseActivity implements YouTubePlaye
     private YouTubePlayerView mYoutubePlayerView = null;
     private YouTubePlayer mYoutubePlayer = null;
     private ArrayList<YoutubeCommentModel> mListData = new ArrayList<>();
-    private CommentAdapter mAdapter = null;
+   // private CommentAdapter mAdapter = null;
     private RecyclerView mList_videos = null;
 
 
@@ -102,7 +100,7 @@ public class DetailsActivity extends YouTubeBaseActivity implements YouTubePlaye
         youTubePlayer.setPlayerStateChangeListener(playerStateChangeListener);
         youTubePlayer.setPlaybackEventListener(playbackEventListener);
         if (!wasRestored) {
-            youTubePlayer.cueVideo(youtubeDataModel.getVideo_id());
+            //youTubePlayer.cueVideo(youtubeDataModel.getVideo_id());
         }
         mYoutubePlayer = youTubePlayer;
     }
@@ -174,11 +172,11 @@ public class DetailsActivity extends YouTubeBaseActivity implements YouTubePlaye
     public void share_btn_pressed(View view) {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
-        String link = ("https://www.youtube.com/watch?v=" + youtubeDataModel.getVideo_id());
+        //String link = ("https://www.youtube.com/watch?v=" + youtubeDataModel.getVideo_id());
         // this is the text that will be shared
-        sendIntent.putExtra(Intent.EXTRA_TEXT, link);
-        sendIntent.putExtra(Intent.EXTRA_SUBJECT, youtubeDataModel.getTitle()
-                + "Share");
+       // sendIntent.putExtra(Intent.EXTRA_TEXT, link);
+        //sendIntent.putExtra(Intent.EXTRA_SUBJECT, youtubeDataModel.getTitle()
+          //      + "Share");
 
         sendIntent.setType("text/plain");
         startActivity(Intent.createChooser(sendIntent, "share"));
