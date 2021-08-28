@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/channelFragment"
+        android:icon="@drawable/ic_home"
+        android:title="Channel" />
+    <item
+        android:id="@+id/playListFragment"
+        android:icon="@drawable/ic_playlist"
+        android:title="Playlist" />
+    <item
+        android:id="@+id/liveFragment"
+        android:icon="@drawable/ic_live"
+        android:title="Live" />
+</menu>

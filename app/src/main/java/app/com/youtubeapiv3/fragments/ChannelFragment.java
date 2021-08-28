@@ -4,21 +4,16 @@ package app.com.youtubeapiv3.fragments;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 
-import org.apache.http.HttpEntity;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.util.EntityUtils;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,8 +51,8 @@ public class ChannelFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_channel, container, false);
         mList_videos = (RecyclerView) view.findViewById(R.id.mList_videos);
-        initList(mListData);
-        new RequestYoutubeAPI().execute();
+       // initList(mListData);
+       // new RequestYoutubeAPI().execute();
         return view;
     }
 
@@ -78,45 +73,45 @@ public class ChannelFragment extends Fragment {
 
 
     //create an asynctask to get all the data from youtube
-    private class RequestYoutubeAPI extends AsyncTask<Void, String, String> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected String doInBackground(Void... params) {
-            HttpClient httpClient = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(CHANNLE_GET_URL);
-            Log.e("URL", CHANNLE_GET_URL);
-            try {
-                HttpResponse response = httpClient.execute(httpGet);
-                HttpEntity httpEntity = response.getEntity();
-                String json = EntityUtils.toString(httpEntity);
-                return json;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String response) {
-            super.onPostExecute(response);
-            if (response != null) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    Log.e("response", jsonObject.toString());
-                    mListData = parseVideoListFromResponse(jsonObject);
-                    initList(mListData);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+//    private class RequestYoutubeAPI extends AsyncTask<Void, String, String> {
+//        @Override
+//        protected void onPreExecute() {
+//            super.onPreExecute();
+//        }
+//
+//        @Override
+//        protected String doInBackground(Void... params) {
+//            HttpClient httpClient = new DefaultHttpClient();
+//            HttpGet httpGet = new HttpGet(CHANNLE_GET_URL);
+//            Log.e("URL", CHANNLE_GET_URL);
+//            try {
+//                HttpResponse response = httpClient.execute(httpGet);
+//                HttpEntity httpEntity = response.getEntity();
+//                String json = EntityUtils.toString(httpEntity);
+//                return json;
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//
+//
+//            return null;
+//        }
+//
+//        @Override
+//        protected void onPostExecute(String response) {
+//            super.onPostExecute(response);
+//            if (response != null) {
+//                try {
+//                    JSONObject jsonObject = new JSONObject(response);
+//                    Log.e("response", jsonObject.toString());
+//                    mListData = parseVideoListFromResponse(jsonObject);
+//                    initList(mListData);
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//    }
 
     public ArrayList<YoutubeDataModel> parseVideoListFromResponse(JSONObject jsonObject) {
         ArrayList<YoutubeDataModel> mList = new ArrayList<>();

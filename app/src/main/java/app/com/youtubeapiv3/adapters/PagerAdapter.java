@@ -1,8 +1,10 @@
 package app.com.youtubeapiv3.adapters;
 
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
+
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import app.com.youtubeapiv3.fragments.ChannelFragment;
 import app.com.youtubeapiv3.fragments.LiveFragment;

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.oceanize.app.activities.Youtube.DetailsActivity">
+   >
 
     <!--<ImageView-->
         <!--android:id="@+id/imageView"-->
@@ -13,115 +13,115 @@
         <!--android:layout_weight="1"-->
         <!--android:scaleType="centerCrop"-->
         <!--android:tag="image_tag" />-->
-    <com.google.android.youtube.player.YouTubePlayerView
-        android:id="@+id/youtube_player"
-        android:layout_height="170dp"
-        android:layout_width="match_parent"/>
+<!--    <com.google.android.youtube.player.YouTubePlayerView-->
+<!--        android:id="@+id/youtube_player"-->
+<!--        android:layout_height="170dp"-->
+<!--        android:layout_width="match_parent"/>-->
 
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:id="@+id/title_layout"
-        android:layout_below="@+id/youtube_player"
-        android:background="#e4e4e4"
-        android:orientation="vertical">
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="130dp"-->
+<!--        android:id="@+id/title_layout"-->
+<!--        android:layout_below="@+id/youtube_player"-->
+<!--        android:background="#e4e4e4"-->
+<!--        android:orientation="vertical">-->
 
-        <TextView
-            android:id="@+id/textViewName"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="5dp"
-            android:maxLines="2"
-            android:text="Android Name sjdnjas ajsk djak sjdka kaskdjaksdj kjskdjaksj"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/common_black_50"
-            android:textSize="20dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/textViewName"-->
+<!--            android:layout_width="300dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginBottom="5dp"-->
+<!--            android:maxLines="2"-->
+<!--            android:text="Android Name sjdnjas ajsk djak sjdka kaskdjaksdj kjskdjaksj"-->
+<!--            android:textAppearance="?android:attr/textAppearanceLarge"-->
+<!--            android:textColor="@color/common_black_50"-->
+<!--            android:textSize="20dp" />-->
 
-        <TextView
-            android:id="@+id/textViewDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:maxLines="1"
-            android:textColor="@color/common_gray_txt"
-            android:text="Android Name sjdnjas ajskdjaksjdka kaskdjaksdj kjskdjaksj"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textSize="16dp" />
+<!--        <TextView-->
+<!--            android:id="@+id/textViewDate"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="left"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginRight="10dp"-->
+<!--            android:maxLines="1"-->
+<!--            android:textColor="@color/common_gray_txt"-->
+<!--            android:text="Android Name sjdnjas ajskdjaksjdka kaskdjaksdj kjskdjaksj"-->
+<!--            android:textAppearance="?android:attr/textAppearanceLarge"-->
+<!--            android:textSize="16dp" />-->
 
-        <TextView
-            android:layout_width="150dp"
-            android:layout_height="30dp"
-            android:text="Download This Video"
-            android:gravity="center"
-            android:onClick="downloadVideo"
-            android:textColor="@color/common_blue_bg"
-            android:layout_marginLeft="1dp"
-            android:layout_marginTop="5dp"/>
-    </LinearLayout>
-    <!--real image size is 40x50px-->
-    <ImageView
-        android:id="@+id/img_left_header"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="20dp"
-        android:onClick="share_btn_pressed"
-        android:scaleType="fitCenter"
-        android:layout_below="@+id/youtube_player"
-        android:src="@drawable/share"
-        android:visibility="visible" />
+<!--        <TextView-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:text="Download This Video"-->
+<!--            android:gravity="center"-->
+<!--            android:onClick="downloadVideo"-->
+<!--            android:textColor="@color/common_blue_bg"-->
+<!--            android:layout_marginLeft="1dp"-->
+<!--            android:layout_marginTop="5dp"/>-->
+<!--    </LinearLayout>-->
+<!--    &lt;!&ndash;real image size is 40x50px&ndash;&gt;-->
+<!--    <ImageView-->
+<!--        android:id="@+id/img_left_header"-->
+<!--        android:layout_width="25dp"-->
+<!--        android:layout_height="25dp"-->
+<!--        android:layout_alignParentRight="true"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:onClick="share_btn_pressed"-->
+<!--        android:scaleType="fitCenter"-->
+<!--        android:layout_below="@+id/youtube_player"-->
+<!--        android:src="@drawable/share"-->
+<!--        android:visibility="visible" />-->
 
-    <TextView
-        android:layout_below="@+id/title_layout"
-        android:id="@+id/textViewDes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="left"
-        android:layout_margin="10dp"
-        android:maxLines="4"
-        android:text="Android Name sjdnjas ajskdjaksjdka kaskdjaksdj kjskdjaksjAndroid Name sjdnjas ajskdjaksjdka kaskdjaksdj kjskdjaksjAndroid Name sjdnjas ajskdjaksjdka kaskdjaksdj kjskdjaksjAndroid Name sjdnjas ajskdjaksjdka kaskdjaksdj kjskdjaksjAndroid Name sjdnjas ajskdjaksjdka kaskdjaksdj kjskdjaksj"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/common_gray_txt"
-        android:textSize="16dp" />
+<!--    <TextView-->
+<!--        android:layout_below="@+id/title_layout"-->
+<!--        android:id="@+id/textViewDes"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_gravity="left"-->
+<!--        android:layout_margin="10dp"-->
+<!--        android:maxLines="4"-->
+<!--        android:text="Android Name sjdnjas ajskdjaksjdka kaskdjaksdj kjskdjaksjAndroid Name sjdnjas ajskdjaksjdka kaskdjaksdj kjskdjaksjAndroid Name sjdnjas ajskdjaksjdka kaskdjaksdj kjskdjaksjAndroid Name sjdnjas ajskdjaksjdka kaskdjaksdj kjskdjaksjAndroid Name sjdnjas ajskdjaksjdka kaskdjaksdj kjskdjaksj"-->
+<!--        android:textAppearance="?android:attr/textAppearanceLarge"-->
+<!--        android:textColor="@color/common_gray_txt"-->
+<!--        android:textSize="16dp" />-->
 
-    <LinearLayout
-        android:layout_below="@+id/textViewDes"
-        android:layout_width="match_parent"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
+<!--    <LinearLayout-->
+<!--        android:layout_below="@+id/textViewDes"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:layout_marginBottom="10dp"-->
 
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
+<!--        android:orientation="vertical"-->
+<!--        android:layout_height="wrap_content">-->
 
-        <TextView
-            android:visibility="gone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="FAVOURITE"
-            android:textColor="@color/colorAccent"/>
+<!--        <TextView-->
+<!--            android:visibility="gone"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="FAVOURITE"-->
+<!--            android:textColor="@color/colorAccent"/>-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="COMMENTS"
-            android:layout_marginLeft="0dp"
-            android:layout_marginBottom="10dp"
-            android:textColor="@color/common_blue_bg"/>
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="COMMENTS"-->
+<!--            android:layout_marginLeft="0dp"-->
+<!--            android:layout_marginBottom="10dp"-->
+<!--            android:textColor="@color/common_blue_bg"/>-->
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/mList_videos"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
-    </LinearLayout>
+<!--        <android.support.v7.widget.RecyclerView-->
+<!--            android:id="@+id/mList_videos"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>-->
+<!--    </LinearLayout>-->
 
     <!--<ImageView-->
         <!--android:layout_width="40dp"-->
